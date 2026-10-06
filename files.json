@@ -1,12 +1,5 @@
 [
   {
-    "name": "Sentinel.exe",
-    "description": "Sentinel client check tool.",
-    "size": "11.7 MB",
-    "sha256": "c0d79ad01e8705de2db2a6fe742a198e7933a2beefcd3e92067b0f35d481a8e7",
-    "url": "https://github.com/0camm/sentinel/releases/latest/download/Sentinel.exe"
-  },
-  {
     "name": "BAMParser.exe",
     "description": "Parses Background Activity Moderator (BAM) registry entries.",
     "size": 3068416,

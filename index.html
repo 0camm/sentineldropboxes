@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Sentinel — File Downloads</title>
+<title>Sentinel</title>
 <meta name="description" content="Official download index for Sentinel. Releases with published checksums.">
 
 <!-- Security hardening (client-side; pair with real HTTP headers on your host for full effect) -->
@@ -15,14 +15,14 @@
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Sentinel — File Downloads">
+<meta name="twitter:title" content="Sentinel">
 <meta name="twitter:description" content="Official download index for Sentinel. Releases with published checksums.">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/0camm/sentinel/main/Sentinel.png">
 <meta name="twitter:image:alt" content="Sentinel logo">
 
 <!-- Open Graph (Facebook/Discord/etc. embeds) -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="Sentinel — File Downloads">
+<meta property="og:title" content="Sentinel">
 <meta property="og:description" content="Official download index for Sentinel. Releases with published checksums.">
 <meta property="og:image" content="https://raw.githubusercontent.com/0camm/sentinel/main/Sentinel.png">
 <meta property="og:site_name" content="Sentinel">
@@ -697,7 +697,7 @@
       Checksums published for every release
     </div>
 
-    <h1>Download Sentinel</h1>
+    <h1>Sentinel Authorized Files</h1>
     <p class="hero-sub">Browse every .exe below and download it directly. Verify each file against its published SHA-256 hash before you run it.</p>
 
     <div class="tabs" role="tablist" aria-label="Page sections">
@@ -784,17 +784,9 @@
 
     // Data is defined here rather than injected via innerHTML anywhere,
     // so there is no code path that renders untrusted or dynamic HTML.
-    // Files are loaded from files.json (see README). This built-in entry is only
-    // a fallback if files.json can't be loaded (e.g. the page is opened from disk).
-    var fallbackFiles = [
-      {
-        name: "Sentinel.exe",
-        description: "Sentinel client check tool.",
-        size: "11.7 MB",
-        sha256: "c0d79ad01e8705de2db2a6fe742a198e7933a2beefcd3e92067b0f35d481a8e7",
-        url: "https://github.com/0camm/sentinel/releases/latest/download/Sentinel.exe"
-      }
-    ];
+    // Files are loaded from files.json (see README). The fallback list is used
+    // only if files.json can't be loaded (e.g. the page is opened from disk).
+    var fallbackFiles = [];
     var files = [];
 
     document.getElementById("year").textContent = new Date().getFullYear();
