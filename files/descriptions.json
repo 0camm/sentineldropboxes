@@ -1,0 +1,12 @@
+{
+  "BAMParser.exe": "Parses Background Activity Moderator (BAM) registry entries.",
+  "DeepFileAudit.exe": "Deep file audit tool.",
+  "JournalTrace.exe": "Reads and traces the NTFS USN change journal.",
+  "PrefetchParser.exe": "Parses Windows Prefetch files.",
+  "ProcessParser.exe": "Process inspection and parsing tool.",
+  "RegistryFinder.exe": "Registry search tool.",
+  "Service-Execution.exe": "Service execution trace tool.",
+  "SystemScanner.exe": "System scan tool.",
+  "Everything-1_4_1_1032_x86-Setup.exe": "Everything 1.4.1.1032 (x86) installer, fast file search by voidtools.",
+  "lastactivityview.zip": "LastActivityView by NirSoft, a log of recent system activity."
+}

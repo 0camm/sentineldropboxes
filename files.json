@@ -1,0 +1,79 @@
+[
+  {
+    "name": "Sentinel.exe",
+    "description": "Sentinel client check tool.",
+    "size": "11.7 MB",
+    "sha256": "c0d79ad01e8705de2db2a6fe742a198e7933a2beefcd3e92067b0f35d481a8e7",
+    "url": "https://github.com/0camm/sentinel/releases/latest/download/Sentinel.exe"
+  },
+  {
+    "name": "BAMParser.exe",
+    "description": "Parses Background Activity Moderator (BAM) registry entries.",
+    "size": 3068416,
+    "sha256": "6437c0c66246178a98b30cb2d885588a2b9a40ada5e7866967183f5812a8880c",
+    "url": "files/BAMParser.exe"
+  },
+  {
+    "name": "DeepFileAudit.exe",
+    "description": "Deep file audit tool.",
+    "size": 35840,
+    "sha256": "e5251e87e6c91873f9fd138b9810a24912755d7acbc53e78ceb7da7722de2a11",
+    "url": "files/DeepFileAudit.exe"
+  },
+  {
+    "name": "Everything-1_4_1_1032_x86-Setup.exe",
+    "description": "Everything 1.4.1.1032 (x86) installer, fast file search by voidtools.",
+    "size": 1901912,
+    "sha256": "781a31b440045219752a1bb40fbd204b1d96964d4bf56af01b18e3d549b037aa",
+    "url": "files/Everything-1_4_1_1032_x86-Setup.exe"
+  },
+  {
+    "name": "JournalTrace.exe",
+    "description": "Reads and traces the NTFS USN change journal.",
+    "size": 108544,
+    "sha256": "46873781a5c80ea676f0ed8024b31423f22918d9f4723aba49b22c8e597ec0e6",
+    "url": "files/JournalTrace.exe"
+  },
+  {
+    "name": "lastactivityview.zip",
+    "description": "LastActivityView by NirSoft, a log of recent system activity.",
+    "size": 90249,
+    "sha256": "74bfc29464f3506ec366d1df5ef9588bbe580bae85529640ac49f6b94155f4fb",
+    "url": "files/lastactivityview.zip"
+  },
+  {
+    "name": "PrefetchParser.exe",
+    "description": "Parses Windows Prefetch files.",
+    "size": 3188736,
+    "sha256": "63e957031c24ef87fda5796dc98255fb91398a4dd7f4ddcd48981c39501eba7e",
+    "url": "files/PrefetchParser.exe"
+  },
+  {
+    "name": "ProcessParser.exe",
+    "description": "Process inspection and parsing tool.",
+    "size": 2941440,
+    "sha256": "4b0548f7959d9257b1038b58f37fd773ce5bc0084da8bb2725e84e789ec1b7da",
+    "url": "files/ProcessParser.exe"
+  },
+  {
+    "name": "RegistryFinder.exe",
+    "description": "Registry search tool.",
+    "size": 8660480,
+    "sha256": "9a736e7c12690918e056a5cfb5997095ce549645abf789ca1e22decabd5cef58",
+    "url": "files/RegistryFinder.exe"
+  },
+  {
+    "name": "Service-Execution.exe",
+    "description": "Service execution trace tool.",
+    "size": 32256,
+    "sha256": "4d0c1101019369dd41e370d614c92398d9a0cd1174589afe7c13c956879236cd",
+    "url": "files/Service-Execution.exe"
+  },
+  {
+    "name": "SystemScanner.exe",
+    "description": "System scan tool.",
+    "size": 35328,
+    "sha256": "ed5f4ed3b23bfe0cd7323a6cddd2ece83960dad75f82ba1085d0a617ac89326c",
+    "url": "files/SystemScanner.exe"
+  }
+]
