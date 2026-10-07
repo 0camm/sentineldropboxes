@@ -68,5 +68,12 @@
     "size": 35328,
     "sha256": "ed5f4ed3b23bfe0cd7323a6cddd2ece83960dad75f82ba1085d0a617ac89326c",
     "url": "files/SystemScanner.exe"
+  },
+  {
+    "name": "USBDeview.exe",
+    "description": "Lists connected and previously used USB devices, with serial numbers and timestamps, by NirSoft.",
+    "size": 132096,
+    "sha256": "706e0f5e6cd53a5c43394f09b7bfa51d5c6783c098bdf1225102c8eecf58d3ed",
+    "url": "files/USBDeview.exe"
   }
 ]

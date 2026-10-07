@@ -8,5 +8,6 @@
   "Service-Execution.exe": "Service execution trace tool.",
   "SystemScanner.exe": "System scan tool.",
   "Everything-1_4_1_1032_x86-Setup.exe": "Everything 1.4.1.1032 (x86) installer, fast file search by voidtools.",
-  "lastactivityview.zip": "LastActivityView by NirSoft, a log of recent system activity."
+  "lastactivityview.zip": "LastActivityView by NirSoft, a log of recent system activity.",
+  "USBDeview.exe": "Lists connected and previously used USB devices, with serial numbers and timestamps, by NirSoft."
 }
