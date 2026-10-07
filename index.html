@@ -7,7 +7,7 @@
 <meta name="description" content="Official download index for Sentinel. Releases with published checksums.">
 
 <!-- Security hardening (client-side; pair with real HTTP headers on your host for full effect) -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https://raw.githubusercontent.com data:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https://raw.githubusercontent.com https://cdn.discordapp.com data:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self' https://api.lanyard.rest; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="color-scheme" content="dark">
@@ -558,6 +558,25 @@
     border-radius: var(--radius-sm);
   }
 
+  .credit-user { display: flex; align-items: center; gap: 12px; min-width: 0; }
+  .credit-avatar {
+    flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%;
+    border: 1px solid var(--line); background: var(--panel-2); position: relative;
+  }
+  .credit-avatar img { width: 100%; height: 100%; border-radius: 50%; display: block; }
+  .credit-status {
+    position: absolute; right: -1px; bottom: -1px; width: 12px; height: 12px;
+    border-radius: 50%; border: 2px solid var(--panel); background: #5f6168;
+  }
+  .credit-status.online { background: #23a55a; }
+  .credit-status.idle { background: #f0b232; }
+  .credit-status.dnd { background: #f23f43; }
+  .credit-name { font-size: 14.5px; font-weight: 600; margin: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .credit-username { font-size: 12.5px; color: var(--muted); margin: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .credit-link { flex-shrink: 0; text-decoration: none; font-size: 13px; font-weight: 600; color: var(--muted-2);
+    background: var(--panel-2); border: 1px solid var(--line); padding: 6px 12px; border-radius: var(--radius-sm); }
+  .credit-link:hover { color: var(--text); border-color: #3a3a3d; }
+
   footer {
     margin-top: 48px;
     padding-top: 24px;
@@ -749,36 +768,7 @@
 
       <div class="info-section">
         <p class="info-label">Credits</p>
-        <div class="credits-list">
-          <div class="credit-row">
-            <div>
-              <p class="credit-role">Cam</p>
-              <p class="credit-sub">Discord user</p>
-            </div>
-            <a class="credit-handle" href="https://discord.com/users/969044763162599424" target="_blank" rel="noopener noreferrer">969044763162599424</a>
-          </div>
-          <div class="credit-row">
-            <div>
-              <p class="credit-role">Marbles</p>
-              <p class="credit-sub">Discord user</p>
-            </div>
-            <a class="credit-handle" href="https://discord.com/users/1012840169713455121" target="_blank" rel="noopener noreferrer">1012840169713455121</a>
-          </div>
-          <div class="credit-row">
-            <div>
-              <p class="credit-role">Dohziez</p>
-              <p class="credit-sub">Discord user</p>
-            </div>
-            <a class="credit-handle" href="https://discord.com/users/1011340390009421916" target="_blank" rel="noopener noreferrer">1011340390009421916</a>
-          </div>
-          <div class="credit-row">
-            <div>
-              <p class="credit-role">LaMelo</p>
-              <p class="credit-sub">Discord user</p>
-            </div>
-            <a class="credit-handle" href="https://discord.com/users/875828483161460787" target="_blank" rel="noopener noreferrer">875828483161460787</a>
-          </div>
-        </div>
+        <div class="credits-list" id="credits-list"></div>
       </div>
     </div>
 
@@ -1024,6 +1014,75 @@
       .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
       .then(function (data) { setFiles(Array.isArray(data) ? data : data.files || []); })
       .catch(function () { setFiles(fallbackFiles); });
+
+
+    // ---------- Credits ----------
+    // Profiles are fetched in the visitor's browser from the Lanyard API.
+    // If a lookup fails, the row falls back to the name and ID listed here.
+    var credits = [
+      { id: "969044763162599424", label: "Cam" },
+      { id: "1012840169713455121", label: "Marbles" },
+      { id: "1011340390009421916", label: "Dohziez" },
+      { id: "875828483161460787", label: "LaMelo" }
+    ];
+    var creditsList = document.getElementById("credits-list");
+
+    function buildCredit(c) {
+      var row = el("div", "credit-row");
+      var user = el("div", "credit-user");
+
+      var avatar = el("div", "credit-avatar");
+      var status = el("span", "credit-status");
+      avatar.appendChild(status);
+
+      var text = el("div", "credit-text");
+      text.style.minWidth = "0";
+      var name = el("p", "credit-name", c.label);
+      var sub = el("p", "credit-username", "ID " + c.id);
+      text.appendChild(name);
+      text.appendChild(sub);
+
+      user.appendChild(avatar);
+      user.appendChild(text);
+
+      var link = el("a", "credit-link", "View profile");
+      link.href = "https://discord.com/users/" + c.id;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+
+      row.appendChild(user);
+      row.appendChild(link);
+      creditsList.appendChild(row);
+
+      return { avatar: avatar, status: status, name: name, sub: sub };
+    }
+
+    function applyProfile(parts, data) {
+      var u = data.discord_user || {};
+      var shown = u.global_name || u.username || null;
+      if (shown) parts.name.textContent = shown;
+      if (u.username) parts.sub.textContent = "@" + u.username;
+      if (u.id && u.avatar) {
+        var ext = u.avatar.indexOf("a_") === 0 ? "gif" : "png";
+        var img = document.createElement("img");
+        img.alt = "";
+        img.width = 40; img.height = 40;
+        img.referrerPolicy = "no-referrer";
+        img.src = "https://cdn.discordapp.com/avatars/" + u.id + "/" + u.avatar + "." + ext + "?size=80";
+        parts.avatar.insertBefore(img, parts.status);
+      }
+      var st = data.discord_status;
+      if (st === "online" || st === "idle" || st === "dnd") parts.status.classList.add(st);
+    }
+
+    credits.forEach(function (c) {
+      var parts = buildCredit(c);
+      if (!window.fetch) return;
+      fetch("https://api.lanyard.rest/v1/users/" + c.id)
+        .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+        .then(function (body) { if (body && body.success) applyProfile(parts, body.data); })
+        .catch(function () { /* keep fallback */ });
+    });
 
     var tabButtons = document.querySelectorAll(".tab-btn");
     var views = document.querySelectorAll(".view");
