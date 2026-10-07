@@ -1020,7 +1020,7 @@
     // Profiles are fetched in the visitor's browser from the Lanyard API.
     // If a lookup fails, the row falls back to the name and ID listed here.
     var credits = [
-      { id: "969044763162599424", label: "Cam" },
+      { id: "969044763162599424", label: "Cam", avatar: "https://cdn.discordapp.com/avatars/969044763162599424/2fecc13f9161036e91b8feccd8c80031.webp?size=80" },
       { id: "1012840169713455121", label: "Marbles" },
       { id: "1011340390009421916", label: "Dohziez" },
       { id: "875828483161460787", label: "LaMelo" }
@@ -1033,6 +1033,14 @@
 
       var avatar = el("div", "credit-avatar");
       var status = el("span", "credit-status");
+      if (c.avatar) {
+        var pinned = document.createElement("img");
+        pinned.alt = "";
+        pinned.width = 40; pinned.height = 40;
+        pinned.referrerPolicy = "no-referrer";
+        pinned.src = c.avatar;
+        avatar.appendChild(pinned);
+      }
       avatar.appendChild(status);
 
       var text = el("div", "credit-text");
@@ -1062,7 +1070,7 @@
       var shown = u.global_name || u.username || null;
       if (shown) parts.name.textContent = shown;
       if (u.username) parts.sub.textContent = "@" + u.username;
-      if (u.id && u.avatar) {
+      if (u.id && u.avatar && !parts.avatar.querySelector("img")) {
         var ext = u.avatar.indexOf("a_") === 0 ? "gif" : "png";
         var img = document.createElement("img");
         img.alt = "";
