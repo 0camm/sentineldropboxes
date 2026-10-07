@@ -564,6 +564,10 @@
     border: 1px solid var(--line); background: var(--panel-2); position: relative;
   }
   .credit-avatar img { width: 100%; height: 100%; border-radius: 50%; display: block; }
+  .credit-initial {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    font-size: 15px; font-weight: 700; color: var(--muted-2);
+  }
   .credit-status {
     position: absolute; right: -1px; bottom: -1px; width: 12px; height: 12px;
     border-radius: 50%; border: 2px solid var(--panel); background: #5f6168;
@@ -1033,6 +1037,7 @@
 
       var avatar = el("div", "credit-avatar");
       var status = el("span", "credit-status");
+      avatar.appendChild(el("span", "credit-initial", c.label.charAt(0).toUpperCase()));
       if (c.avatar) {
         var pinned = document.createElement("img");
         pinned.alt = "";
@@ -1040,6 +1045,7 @@
         pinned.referrerPolicy = "no-referrer";
         pinned.src = c.avatar;
         avatar.appendChild(pinned);
+        avatar.querySelector(".credit-initial").style.display = "none";
       }
       avatar.appendChild(status);
 
@@ -1078,6 +1084,8 @@
         img.referrerPolicy = "no-referrer";
         img.src = "https://cdn.discordapp.com/avatars/" + u.id + "/" + u.avatar + "." + ext + "?size=80";
         parts.avatar.insertBefore(img, parts.status);
+        var initial = parts.avatar.querySelector(".credit-initial");
+        if (initial) initial.style.display = "none";
       }
       var st = data.discord_status;
       if (st === "online" || st === "idle" || st === "dnd") parts.status.classList.add(st);
